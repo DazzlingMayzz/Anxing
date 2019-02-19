@@ -1,0 +1,19 @@
+<!--pages/car/car.wxml-->
+<map id='myMap'
+  markers="{{markers}}"
+   style="width:100%;height:300px;"
+   longitude="{{longitude}}"
+   latitude="{{latitude}}"
+   polyline="{{polyline}}"
+   scale='16'>
+</map>
+<!-- <form bindsubmit='search'>
+  目的地<input placeholder='请输入目的地' bindblur='getInputDestination'></input>
+  <button form-type='submit'>查询</button>
+</form> -->
+<view class="section">
+  <input bindinput="bindInput" placeholder="搜索" value="{{inputTxt}}" focus="true" />
+</view>
+<view bindtouchstart="bindSearch" data-keywords="{{i.name}}" data-location="{{i.location}}" class="text_box" wx:for="{{tips}}" wx:for-item="i">
+  {{i.name}}
+</view>

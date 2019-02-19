@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/car/car",
+    "pages/walk/walk",
+    "pages/myInfo/myInfo"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/car/car",
+        "text": "乘车"
+      },
+      {
+        "pagePath": "pages/walk/walk",
+        "text": "步行"
+      },
+      {
+        "pagePath": "pages/myInfo/myInfo",
+        "text": "我的"
+      }
+    ],
+    "color": "#ccc",
+    "selectedColor": "black"
+  }
+}

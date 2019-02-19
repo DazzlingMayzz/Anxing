@@ -1,0 +1,12 @@
+<!--pages/walk/walk.wxml-->
+<map id='myMap'
+  markers="{{markers}}"
+   style="width:100%;height:750rpx;"
+   longitude="{{longitude}}"
+   latitude="{{latitude}}"
+   polyline="{{polyline}}"
+   scale='16'>
+</map>
+<picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">搜索地点选择：{{array[index]}}</view>
+</picker>

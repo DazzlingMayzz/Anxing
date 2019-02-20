@@ -1,2 +1,13 @@
 <!--pages/walk/walk.wxml-->
-<text>pages/walk/walk.wxml</text>
+
+<!--地图容器-->
+<map id="myMap"
+   markers="{{markers}}"
+   style="width:100%;height:600px;"
+   longitude="{{startLng}}" 
+   controls="{{controls}}" 
+   bindcontroltap="controltap"
+   latitude="{{startLat}}" scale="{{scale}}"
+   polyline="{{polyline}}" 
+   bindmarkertap="walking">
+</map>

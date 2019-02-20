@@ -1,1 +1,5 @@
-{}
+{
+  "usingComponents": {
+    "map-route": "plugin://myPlugin/mapRoute"
+  }
+}

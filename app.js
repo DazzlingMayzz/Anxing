@@ -34,6 +34,13 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    location:{
+      province: '',
+      city: '',
+      latitude: '',
+      longitude: ''
+    },
+    speed:-2
   }
 })

@@ -19,7 +19,7 @@ bindinput="getsuggest" value="{{backfill}}" bindblur="blur"></input>
 <!--地图容器-->
 <map id="myMap"
    markers="{{markers}}"
-   style="width:100%;height:500px;"
+   style="width:100%;height:{{windowHeight-100}}px;"
    show-location
    longitude="{{startLng}}" 
    controls="{{controls}}" 

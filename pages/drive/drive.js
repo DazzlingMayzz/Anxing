@@ -76,6 +76,18 @@ Page({
       }
     });
     // console.log(app.globalData.location.latitude)
+    wx.getSystemInfo({
+      success: function (res) {
+        _this.setData({
+          mobileModel: res.model,
+          mobileePixelRatio: res.pixelRatio,
+          windowWidth: res.windowWidth,
+          windowHeight: res.windowHeight,
+          language: res.language,
+          version: res.version
+        })
+      }
+    })
   },
 
   onReady: function () {

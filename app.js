@@ -41,6 +41,7 @@ App({
       latitude: '',
       longitude: ''
     },
-    speed:-2
+    speed:-2,
+    recorderManager:null
   }
 })

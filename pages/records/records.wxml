@@ -1,0 +1,8 @@
+<!--pages/records/records.wxml-->
+<view>录音列表</view>
+<view id="choose" wx:for="{{time}}">
+    <view style="font-size:16px;text-align:center;">{{item}}
+    <button bindtap='play' bindtap="play" id="{{index}}">播放</button>
+    <button bindtap='upload'>上传</button>
+    </view>
+</view>

@@ -19,7 +19,8 @@ bindinput="getsuggest" value="{{backfill}}" bindblur="blur"></input>
 <!--地图容器-->
 <map id="myMap"
    markers="{{markers}}"
-   style="width:100%;height:600px;"
+   style="width:100%;height:500px;"
+   show-location
    longitude="{{startLng}}" 
    controls="{{controls}}" 
    bindcontroltap="controltap"
@@ -27,7 +28,10 @@ bindinput="getsuggest" value="{{backfill}}" bindblur="blur"></input>
    polyline="{{polyline}}">
 </map>
 
-<view>
-    <button class="img-plus-style zindex100 yc" type="primary" bindtap=''></button>
-    <image src="../../img/other/录音.png" class="img-plus-style"></image>
+<view hidden='{{recording}}'>
+    <image src="../../img/other/record.png" class="img-plus-style" bindtap="recording"></image>
+</view>
+
+<view hidden='{{!recording}}'>
+    <image src="../../img/other/stop.png" class="img-plus-style" bindtap="stoprecording"></image>
 </view>

@@ -50,5 +50,15 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  gotorecords: function(){
+    wx.navigateTo({
+      url: '../records/records',
+    })
+  },
+  gotofriends: function () {
+    wx.navigateTo({
+      url: '../friends/friends',
+    })
   }
 })

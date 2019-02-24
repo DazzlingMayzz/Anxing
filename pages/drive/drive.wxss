@@ -33,12 +33,10 @@ text{
   display: flex;flex-direction: row;position: fixed;bottom: 0
 }
 .img-plus-style {
-height: 100rpx;
-width: 100rpx;
-position: fixed;
-bottom: 100rpx;
-right: 13rpx;
-opacity: 0.7
+position:fixed;
+width:42px;
+height:42px;
+bottom:20px;
+right:20px;
+background-color: white;
 }
-.zindex100{z-index: 100}
-.yc{opacity: 0}

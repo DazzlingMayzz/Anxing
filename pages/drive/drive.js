@@ -1,6 +1,8 @@
 // pages/drive/drive.js
 
 const app = getApp();
+var util=require("../../utils/util.js");
+const recorderManager = wx.getRecorderManager()
 var QQMapWX = require('../../libs/qqmap-wx-jssdk.js')
 var qqmapsdk
 
@@ -17,28 +19,29 @@ Page({
     polyline: [],
     hiddenSuggest: false,
     suggestion: [],
+    recording: false,
 
-    controls: [{
-      id: 1,
-      iconPath: '../../img/control/jia.png',
-      position: {
-        left: 375 - 60,
-        top: 0,
-        width: 40,
-        height: 40
-      },
-      clickable: true
-    }, {
-      id: 2,
-      iconPath: '../../img/control/jian.png',
-      position: {
-        left: 375 - 60,
-        top: 40,
-        width: 40,
-        height: 40
-      },
-      clickable: true
-    }],
+    // controls: [{
+    //   id: 1,
+    //   iconPath: '../../img/control/jia.png',
+    //   position: {
+    //     left: 375 - 60,
+    //     top: 0,
+    //     width: 40,
+    //     height: 40
+    //   },
+    //   clickable: true
+    // }, {
+    //   id: 2,
+    //   iconPath: '../../img/control/jian.png',
+    //   position: {
+    //     left: 375 - 60,
+    //     top: 40,
+    //     width: 40,
+    //     height: 40
+    //   },
+    //   clickable: true
+    // }],
   },
 
   onLoad: function () {
@@ -67,16 +70,7 @@ Page({
           _this.setData({
             startLat: data.latitude,
             startLng: data.longitude,
-            location: data.latitude + ',' + data.longitude,
-            markers: [{
-              title: "我的位置",
-              id: 0,
-              latitude: data.latitude,
-              longitude: data.longitude,
-              iconPath: "../../img/map/me.png", //图标路径
-              width: 32,
-              height: 32
-            }]
+            location: data.latitude + ',' + data.longitude
           });
         }
       }
@@ -149,10 +143,10 @@ Page({
       location: _this.data.location, //设置周边搜索中心点
       success: function (res) { //搜索成功后的回调
         var mks = []
-        for (var i = 0; i < 3; i++) {
+        for (var i = 0; i < 10; i++) {
           mks.push({ // 获取返回结果，放到mks数组中
             title: res.data[i].title,
-            id: i + 1,
+            id: i,
             latitude: res.data[i].location.lat,
             longitude: res.data[i].location.lng,
             iconPath: "../../img/map/police.png", //图标路径
@@ -250,5 +244,81 @@ Page({
     this.setData({
       hiddenSuggest:false
     })
-  }
+  },
+
+  recording:function(){
+    var _this=this;
+    this.getRecording();
+    var tempFilePath;
+    const options = {
+      duration: 600000,//指定录音的时长，单位 ms
+      sampleRate: 16000,//采样率
+      numberOfChannels: 1,//录音通道数
+      encodeBitRate: 96000,//编码码率
+      format: 'mp3',//音频格式，有效值 aac/mp3
+      frameSize: 50,//指定帧大小，单位 KB
+    }
+    recorderManager.start(options);
+    recorderManager.onStart(() => {
+      console.log('recorder start')
+      _this.setData({
+        recording:true
+      })
+    });
+    wx.showToast({
+      title: '录音开始',
+      duration: 2000
+    })
+  },
+
+  stoprecording:function(){
+    var _this=this;
+    var path="";
+    recorderManager.stop();
+    recorderManager.onStop((res) => {
+      this.tempFilePath = res.tempFilePath;
+      console.log('recorder stop', res.tempFilePath)
+      path = res.tempFilePath;
+      const { tempFilePath } = res
+      _this.setData({
+        recording: false
+      })
+      var TIME = util.formatTime(new Date());
+
+      setTimeout(function () {
+        wx.navigateTo({
+          url: '../records/records?path=' + path + '&time=' + TIME,
+        })
+      }, 2000)
+
+      wx.showToast({
+        title: '录音结束',
+        duration: 2000
+      })
+    })
+  },
+
+  getRecording:function(){
+    var _this = this;
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.record']) {
+          _this.setData({
+            mkf: '麦克风权限已启用'
+          })
+        } else {
+          wx.authorize({
+            scope: 'scope.record',
+            success() {
+              // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
+              // wx.startRecord()
+              _this.setData({
+                mkf: '麦克风权限已启用'
+              })
+            }
+          })
+        }
+      }
+    })
+  },
 })

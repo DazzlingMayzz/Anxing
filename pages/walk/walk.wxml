@@ -8,6 +8,7 @@
    controls="{{controls}}" 
    bindcontroltap="controltap"
    latitude="{{startLat}}" scale="{{scale}}"
+   show-location
    polyline="{{polyline}}" 
    bindmarkertap="walking">
 </map>

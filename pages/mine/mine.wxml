@@ -7,7 +7,14 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
 </view>
+
+ <button class='btn' bindtap="gotorecords">
+    <image class='btnImg' src='../../img/other/records.png'></image>
+    <view>录音</view>
+ </button>
+
+<button class='btn' bindtap="gotofriends">
+    <image class='btnImg' src='../../img/other/friends.png'></image>
+    <view>紧急联系人</view>
+ </button>

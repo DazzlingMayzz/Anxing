@@ -65,16 +65,7 @@ Page({
           _this.setData({
             startLat: data.latitude,
             startLng: data.longitude,
-            location: data.latitude +','+data.longitude,
-            markers:[{
-              title: "我的位置",
-              id: 0,
-              latitude: data.latitude,
-              longitude: data.longitude,
-              iconPath: "../../img/map/me.png", //图标路径
-              width: 32,
-              height: 32
-            }]
+            location: data.latitude +','+data.longitude
           });
         }
       }
@@ -158,7 +149,7 @@ Page({
         for (var i = 0; i < res.data.length; i++) {
           mks.push({ // 获取返回结果，放到mks数组中
             title: res.data[i].title,
-            id: i+1 ,
+            id: i ,
             latitude: res.data[i].location.lat,
             longitude: res.data[i].location.lng,
             iconPath: "../../img/map/market.png", //图标路径
@@ -188,7 +179,7 @@ Page({
         for (var i = 0; i < res.data.length; i++) {
           mks.push({ // 获取返回结果，放到mks数组中
             title: res.data[i].title,
-            id: i + 11,
+            id: i + 10,
             latitude: res.data[i].location.lat,
             longitude: res.data[i].location.lng,
             iconPath: "../../img/map/police.png", //图标路径

@@ -1,1 +1,23 @@
 /* pages/records/records.wxss */
+.btn {
+  width: 30%;
+  margin-top: 10rpx;
+  background-color:whitesmoke ;
+  color: black;
+  border-radius: 98rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnImg {
+  margin-right: 8rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+.text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,8 +1,16 @@
 <!--pages/records/records.wxml-->
-<view>录音列表</view>
-<view id="choose" wx:for="{{time}}">
-    <view style="font-size:16px;text-align:center;">{{item}}
-    <button bindtap='play' bindtap="play" id="{{index}}">播放</button>
-    <button bindtap='upload'>上传</button>
+<view style="font-size:18px;text-align:center;">录音列表</view>
+<view class='text'id="choose" wx:for="{{time}}">
+    <view style="display:flex;justify-content:space-around;flex-direction:row;">{{item}}
+    
+    <button class='btn' bindtap='play' bindtap="play" id="{{index}}">
+        <image class='btnImg' src='../../img/other/bofang.png'></image>
+        <view style='font-size:15px'>播放</view>
+    </button>
+    <button class='btn' bindtap='upload'>
+        <image class='btnImg' src='../../img/other/shangchuan.png'></image>
+        <view style='font-size:15px'>上传</view>
+    </button>
     </view>
 </view>
+

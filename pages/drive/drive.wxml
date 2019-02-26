@@ -19,19 +19,33 @@ bindinput="getsuggest" value="{{backfill}}" bindblur="blur"></input>
 <!--地图容器-->
 <map id="myMap"
    markers="{{markers}}"
-   style="width:100%;height:{{windowHeight-100}}px;"
+   style="width:100%;height:{{windowHeight}}px;"
    show-location
    longitude="{{startLng}}" 
    controls="{{controls}}" 
    bindcontroltap="controltap"
    latitude="{{startLat}}" scale="{{scale}}"
    polyline="{{polyline}}">
+
+   <!-- <button hidden='{{recording}}'>
+    <image src="../../img/other/record.png" class="img-plus-style" bindtap="recording"></image>
+   </button>
+
+   <button hidden='{{!recording}}'>
+    <image src="../../img/other/stop.png" class="img-plus-style" bindtap="stoprecording"></image>
+   </button> -->
+   
+    <cover-image hidden='{{recording}}' src="../../img/other/record.png" class="img-plus-style" bindtap="recording"></cover-image>
+ 
+    <cover-image hidden='{{!recording}}' src="../../img/other/stop.png" class="img-plus-style" bindtap="stoprecording"></cover-image>
+
+
 </map>
 
-<view hidden='{{recording}}'>
-    <image src="../../img/other/record.png" class="img-plus-style" bindtap="recording"></image>
-</view>
+<!-- <cover-view hidden='{{recording}}'>
+    <cover-image src="../../img/other/record.png" class="img-plus-style" bindtap="recording"></cover-image>
+</cover-view>
 
-<view hidden='{{!recording}}'>
-    <image src="../../img/other/stop.png" class="img-plus-style" bindtap="stoprecording"></image>
-</view>
+<cover-view hidden='{{!recording}}'>
+    <cover-image src="../../img/other/stop.png" class="img-plus-style" bindtap="stoprecording"></cover-image>
+</cover-view> -->

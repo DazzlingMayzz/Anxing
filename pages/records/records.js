@@ -14,6 +14,8 @@ Page({
     var _this =this
     console.log(options.time +" "+ options.path)
 
+  
+
     // wx.getStorage({
     //   key: 'time',
     //   success: function (res) {

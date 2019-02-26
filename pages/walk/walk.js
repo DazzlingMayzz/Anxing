@@ -16,27 +16,27 @@ Page({
     location:'',
     polyline:[],
 
-    controls: [{
-      id: 1,
-      iconPath: '../../img/control/jia.png',
-      position: {
-        left: 375-60,
-        top: 0,
-        width: 40,
-        height: 40
-      },
-      clickable: true
-    }, {
-      id: 2,
-      iconPath: '../../img/control/jian.png',
-      position: {
-        left: 375-60,
-        top: 40,
-        width: 40,
-        height: 40
-      },
-      clickable: true
-    }],
+    // controls: [{
+    //   id: 1,
+    //   iconPath: '../../img/control/jia.png',
+    //   position: {
+    //     left: 375-60,
+    //     top: 0,
+    //     width: 40,
+    //     height: 40
+    //   },
+    //   clickable: true
+    // }, {
+    //   id: 2,
+    //   iconPath: '../../img/control/jian.png',
+    //   position: {
+    //     left: 375-60,
+    //     top: 40,
+    //     width: 40,
+    //     height: 40
+    //   },
+    //   clickable: true
+    // }],
   },
 
   onLoad: function () {

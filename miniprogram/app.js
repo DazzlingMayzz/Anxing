@@ -5,7 +5,7 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
+    var _this=this;
     // 登录
     wx.login({
       success: res => {
@@ -32,7 +32,17 @@ App({
         }
       }
     })
-    
+    // wx.request({
+    //   url: 'https://api.weixin.qq.com/sns/jscode2session',
+    //   data: {
+    //     appid: 'wx9ed0a37e28b8bed8',
+    //     secret: 'a9f020cc3c24e12758106932654c2842',
+    //     grant_type: 'authorization_code'
+    //   },
+    //   success: function (res) {
+    //     _this.globalData.openid = res.data.openid;
+    //   }
+    // })
   },
   globalData: {
     userInfo: null,
@@ -43,6 +53,7 @@ App({
       longitude: ''
     },
     speed:-2,
-    recorderManager:null
+    recorderManager:null,
+    openid:0
   }
 })

@@ -18,3 +18,9 @@
     <image class='btnImg' src='../../img/other/friends.png'></image>
     <view>紧急联系人</view>
  </button>
+
+ <view>
+    <form bindsubmit='submit' report-submit="true">
+    <button class='btn' form-type='submit'>发送模板请求</button>
+    </form>
+ </view>

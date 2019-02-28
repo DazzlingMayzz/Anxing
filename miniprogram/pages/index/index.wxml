@@ -1,7 +1,86 @@
 <!--index.wxml-->
 <view class="retailStore">
-   <view class="cnaps  borderBottom">
-    <text>所在城市</text>
-    <input class='m-bbt' placeholder-class='plhStyle' type='number' maxlength='50' placeholder='' bindinput="bindKeyInput" value='{{province}} {{city}} {{latitude}} {{longitude}}' disabled></input>
+  <view class='sesection'>
+    <view class="cnaps  borderBottom">
+      <!-- <text>所在城市</text> -->
+      <input class='m-bbt' placeholder-class='plhStyle' type='number' maxlength='50' placeholder='' bindinput="bindKeyInput" value='{{province}} {{city}} {{latitude}} {{longitude}}' disabled></input>
+    </view>
   </view>
+
+  <view class="selection">
+    <swiper indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+      <block wx:for="{{imgUrls}}">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" width="415" height="150" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <view class="selection">
+    <view class='header'>
+      <text>精品推荐 </text>
+      <text class='text-all'>全部精品</text>
+    </view>
+
+    <view class="content">
+      <view class="content-item" wx:for="{{contentItems}}">
+        <image src='../../img/index/suggest1.jpg'>
+        </image>
+
+        <view class='content-item-text'>
+          <text>这是一段新闻</text>
+        </view>
+
+      </view>
+
+      <!-- <view class="content-item">
+        <image src='../../img/index/suggest2.jpg'></image>
+      </view>
+
+
+      <view class="content-item">
+        <image src='../../img/index/suggest3.jpg'></image>
+      </view>
+
+
+      <view class="content-item">
+        <image src='../../img/index/suggest4.jpg'></image>
+      </view> -->
+
+
+    </view>
+  </view>
+
+
+  <view class="selection">
+    <view class='header'>
+      <text>热门事件 </text>
+      <text class='text-all'>全部热门</text>
+    </view>
+
+    <view class='list-item' wx:for="{{listItems}}">
+      <view class='list-item-images'>
+        <image src='../../img/index/suggest4.jpg' class='list-item-iamges-img'></image>
+        <image src='../../img/index/suggest3.jpg' class='avatar'></image>
+
+      </view>
+
+      <view class='list-item-text'>
+        <view class='list-item-text-title'>
+
+          <text>标题</text>
+        </view>
+        <view class='list-item-text-content'>
+
+          <text>这里是一段内容，你好。这里是一段内容，你好。这里是一段内容，你好。这里是一段内容，你好。</text>
+        </view>
+
+
+      </view>
+
+
+    </view>
+  </view>
+
 </view>

@@ -8,18 +8,38 @@ Page({
     province: '',
     city: '',
     latitude: '',
-    longitude: ''
+    longitude: '',
+
+    imgUrls: [
+      // '../../img/other/friends.png',
+      '../../img/index/pic1.jpg',
+      '../../img/index/pic2.jpg',
+      '../../img/index/pic3.jpg'
+    ],
+    contentItems:[
+      '',
+      '',
+      '',
+      ''
+    ],
+    listItems: [
+      '',
+      '',
+      '',
+      ''
+    ]
   },
-  onLoad: function () {
+  onLoad: function() {
     qqmapsdk = new QQMapWX({
       key: 'OXRBZ-IMN6K-5ZXJ4-AOVGT-2IEE2-A2FPW'
     });
   },
-  onShow: function () {
+  onShow: function() {
     let vm = this;
     vm.getUserLocation();
   },
-  getUserLocation: function () {
+
+  getUserLocation: function() {
     let vm = this;
     wx.getSetting({
       success: (res) => {
@@ -31,7 +51,7 @@ Page({
           wx.showModal({
             title: '请求授权当前位置',
             content: '需要获取您的地理位置，请确认授权',
-            success: function (res) {
+            success: function(res) {
               if (res.cancel) {
                 wx.showToast({
                   title: '拒绝授权',
@@ -40,7 +60,7 @@ Page({
                 })
               } else if (res.confirm) {
                 wx.openSetting({
-                  success: function (dataAu) {
+                  success: function(dataAu) {
                     if (dataAu.authSetting["scope.userLocation"] == true) {
                       wx.showToast({
                         title: '授权成功',
@@ -64,8 +84,7 @@ Page({
         } else if (res.authSetting['scope.userLocation'] == undefined) {
           //调用wx.getLocation的API
           vm.getLocation();
-        }
-        else {
+        } else {
           //调用wx.getLocation的API
           vm.getLocation();
         }
@@ -73,17 +92,17 @@ Page({
     })
   },
   // 微信获得经纬度
-  getLocation: function () {
+  getLocation: function() {
     let vm = this;
     wx.getLocation({
       type: 'wgs84',
-      success: function (res) {
+      success: function(res) {
         console.log(JSON.stringify(res))
         var latitude = res.latitude
         var longitude = res.longitude
         vm.setData({
-          latitude:latitude,
-          longitude:longitude,
+          latitude: latitude,
+          longitude: longitude,
         })
         var speed = res.speed
         app.globalData.speed = speed;
@@ -94,13 +113,13 @@ Page({
         app.globalData.location.longitude = vm.data.longitude;
         // console.log(app.globalData.location.latitude)
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log('fail' + JSON.stringify(res))
       }
     })
   },
   // 获取当前地理位置
-  getLocal: function (latitude, longitude) {
+  getLocal: function(latitude, longitude) {
     // console.log(latitude,longitude)
     let vm = this;
     qqmapsdk.reverseGeocoder({
@@ -108,7 +127,7 @@ Page({
         latitude: latitude,
         longitude: longitude
       },
-      success: function (res) {
+      success: function(res) {
         console.log(JSON.stringify(res));
         let province = res.result.ad_info.province
         let city = res.result.ad_info.city
@@ -119,12 +138,12 @@ Page({
         app.globalData.location.province = vm.data.province;
         app.globalData.location.city = vm.data.city;
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log(res);
       },
-      complete: function (res) {
+      complete: function(res) {
         // console.log(res);
       }
     });
   }
-})
+})  

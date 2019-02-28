@@ -3,7 +3,7 @@
 <!--地图容器-->
 <map id="myMap"
    markers="{{markers}}"
-   style="width:100%;height:600px;"
+   style="width:100%;height:{{windowHeight}}px;"
    longitude="{{startLng}}" 
    controls="{{controls}}" 
    bindcontroltap="controltap"

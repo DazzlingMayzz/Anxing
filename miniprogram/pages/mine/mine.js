@@ -1,6 +1,7 @@
 //mine.js
 //获取应用实例
 const app = getApp()
+const util = require('../../utils/util')
 
 Page({
   data: {
@@ -62,17 +63,40 @@ Page({
     })
   },
   submit: function (e) {
+    var form_id = e.detail.formId;
     wx.cloud.init();
     wx.cloud.callFunction({
       // 云函数名称
-      name: 'getOpenId',
+      name: 'getAccessToken',
       // 传给云函数的参数
       data: {
       },
     }).then(res => {
-      console.log(res.result) // 3
-    })
-      .catch(console.error)
-    console.log(e);
+      app.globalData.access_token = JSON.parse(res.result).access_token;
+      console.log(app.globalData.access_token + typeof (app.globalData.access_token))
+      wx.cloud.callFunction({
+        name: 'sendTemplateMessage',
+        data: {
+          "token": app.globalData.access_token,
+          "openid": "ofYS94kia5Z-9yeK-8b05C0Q2LQI",
+          "formid": form_id,
+          "page": "",
+          "data": {
+            "keyword1": {
+              "value": "危险"
+            },
+            "keyword2": {
+              "value": util.formatTime(new Date())
+            },
+            "keyword3": {
+              "value": "腾讯微信总部"
+            },
+          },
+          "emphasis_keyword": ""
+        }
+      }).then(res => {
+        console.log(res);
+      }).catch(console.error)
+    }).catch(console.error)
   }
 })

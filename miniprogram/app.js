@@ -10,6 +10,8 @@ App({
     wx.login({
       success: res => {
         // console.log(res);
+        _this.globalData.code = res.code;
+        // console.log("code: " + _this.globalData.code)
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
@@ -55,6 +57,8 @@ App({
     },
     speed:-2,
     recorderManager:null,
-    openid:0
+    openid: "",
+    access_token: "",
+    code: 0
   }
 })

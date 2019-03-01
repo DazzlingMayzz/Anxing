@@ -1,6 +1,13 @@
 //app.js
 App({
   onLaunch: function () {
+    wx.cloud.init({
+      env: 'anxing-917314',
+      traceUser: true
+    })
+    // const db = wx.cloud.database({
+    //   env: 'anxing-917314'
+    // })
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())

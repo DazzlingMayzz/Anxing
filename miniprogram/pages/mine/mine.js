@@ -64,6 +64,14 @@ Page({
     })
   },
   gotofriends: function () {
+    if (!this.data.hasUserInfo && this.data.canIUse){
+      wx.showToast({
+        title: '请先登录后操作',
+        icon: 'loading',
+        duration: 2000
+      })
+      return
+    }
     wx.navigateTo({
       url: '../friends/friends',
     })

@@ -5,6 +5,9 @@ var util=require("../../utils/util.js");
 const recorderManager = wx.getRecorderManager()
 var QQMapWX = require('../../libs/qqmap-wx-jssdk.js')
 var qqmapsdk
+const EARTH_RADIUS = 6378137.0;    //单位M
+const PI = Math.PI;
+const maxDeviationDistance = 200;
 
 Page({
   data: {
@@ -20,6 +23,8 @@ Page({
     hiddenSuggest: false,
     suggestion: [],
     recording: false,
+    locationTimer: {},
+    checkDeviationTimer: {}
 
     // controls: [{
     //   id: 1,
@@ -64,7 +69,7 @@ Page({
         })
       }
     })
-    setInterval(function () {
+    _this.data.locationTimer = setInterval(function() {
       wx.getLocation({
         type: 'gcj02',
         success(data) {
@@ -78,6 +83,7 @@ Page({
         }
       })
     }, 5000)
+    // _this.data.checkDeviationDtimer = setInterval(_this.checkDeviation, 5000)
     // console.log(app.globalData.location.latitude)
     wx.getSystemInfo({
       success: function (res) {
@@ -146,6 +152,7 @@ Page({
           polyline: polyline
         })
         // console.log(polyline)
+        _this.data.checkDeviationDtimer = setInterval(_this.checkDeviation, 5000)
       }
     };
     console.log(opt.url);
@@ -339,4 +346,51 @@ Page({
       }
     })
   },
+
+  getGreatCircleDistance: function(lat1, lng1, lat2, lng2){
+    // console.log(lat1, lng1, lat2, lng2)
+    var getRad = function(d) {
+      return d * PI / 180.0;
+    }
+    var radLat1 = getRad(lat1);
+    var radLat2 = getRad(lat2);
+
+    var a = radLat1 - radLat2;
+    var b = getRad(lng1) - getRad(lng2);
+
+    var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+    s = s * EARTH_RADIUS;
+    s = Math.round(s * 10000) / 10000.0;
+    // console.log(s)
+    return s;
+  },
+
+  checkDeviation: function() {
+    var _this = this;
+    if (_this.data.polyline.length > 0) {
+      let flag = true;
+      let len = _this.data.polyline["0"].points.length;
+      for (let i = 0; i < len; i++) {
+        if (_this.getGreatCircleDistance(_this.data.startLat, _this.data.startLng,
+          _this.data.polyline["0"].points[i].latitude, _this.data.polyline["0"].points[i].longitude)
+          < maxDeviationDistance) {
+          flag = false;
+          break;
+        }
+      }
+      if (flag) {
+        //路线偏离，显示警告
+        console.log("WARNING!!!!!!!!!!")
+      }
+      if (_this.getGreatCircleDistance(_this.data.startLat, _this.data.startLng,
+        _this.data.polyline["0"].points[len - 1].latitude, _this.data.polyline["0"].points[len - 1].longitude)
+        < maxDeviationDistance) {
+        clearInterval(_this.data.checkDeviationDtimer);
+      }
+    }
+    else {
+      clearInterval(_this.data.checkDeviationDtimer);
+    }
+  }
+
 })

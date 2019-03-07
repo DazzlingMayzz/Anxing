@@ -59,6 +59,18 @@ Page({
         })
       }
     })
+    wx.getLocation({
+      type: 'gcj02',
+      success(data) {
+        if (data) {
+          _this.setData({
+            startLat: data.latitude,
+            startLng: data.longitude,
+            location: data.latitude + ',' + data.longitude
+          });
+        }
+      }
+    })
     setInterval(function() {
       wx.getLocation({
         type: 'gcj02',

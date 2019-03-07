@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -51,6 +51,14 @@
 					"id": -1,
 					"name": "walk",
 					"pathName": "pages/walk/walk",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "drive",
+					"pathName": "pages/drive/drive",
+					"query": "",
 					"scene": null
 				}
 			]

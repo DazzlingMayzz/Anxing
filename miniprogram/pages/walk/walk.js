@@ -72,7 +72,7 @@ Page({
           }
         }
       })
-    }, 1000)
+    }, 5000)
     wx.getSystemInfo({
       success: function (res) {
         _this.setData({
@@ -127,6 +127,8 @@ Page({
       dataType: 'json',
       //请求成功回调
       success: function (res) {
+        console.log('!!!!!!!!!!!!!!!!!!walking route\n')
+        console.log(res)
         // console.log(this.url)
         var ret = res.data
         if (ret.status != 0) return; //服务异常处理
@@ -141,13 +143,15 @@ Page({
           pl.push({ latitude: coors[i], longitude: coors[i + 1] })
         }
         //设置polyline属性，将路线显示出来
+        var polyline = [{
+          points: pl,
+          color: '#FF0000DD',
+          width: 4
+        }];
         _this.setData({
-          polyline: [{
-            points: pl,
-            color: '#FF0000DD',
-            width: 4
-          }]
-        })
+          polyline: polyline
+          })
+        console.log(polyline)
       }
     };
     console.log(opt.url);

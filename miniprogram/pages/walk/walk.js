@@ -61,6 +61,7 @@ Page({
     })
     setInterval(function() {
       wx.getLocation({
+        type: 'gcj02',
         success(data) {
           if (data) {
             _this.setData({

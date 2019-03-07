@@ -36,7 +36,27 @@ text{
 position:fixed;
 width:42px;
 height:42px;
-bottom:20px;
-right:20px;
+bottom:70px;
+right:15px;
 background-color: white;
+}
+.btn1 {
+  width: 100%;
+  height: 50px;
+  margin-top: 0rpx;
+  background-color: green;
+  color: white;
+  border-radius: 98rpx;
+  position: fixed;
+  bottom: 0px;
+}
+.btn2 {
+  width: 100%;
+  height: 50px;
+  margin-top: 0rpx;
+  background-color: red;
+  color: white;
+  border-radius: 98rpx;
+  position: fixed;
+  bottom: 0px;
 }

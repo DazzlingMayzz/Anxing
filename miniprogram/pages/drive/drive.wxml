@@ -1,7 +1,7 @@
 <!--pages/drive/drive.wxml-->
 
 <!--绑定输入事件-->
-<input style="font-size:14px;border:1px solid black;" placeholder="请输入目的地" bindfocus="focus" 
+<input style="font-size:14px;border:1px solid black;height:25px;" placeholder="请输入目的地" bindfocus="focus" 
 bindinput="getsuggest" value="{{backfill}}" bindblur="blur"></input>
 
 <!--关键词输入提示列表渲染-->
@@ -19,7 +19,7 @@ bindinput="getsuggest" value="{{backfill}}" bindblur="blur"></input>
 <!--地图容器-->
 <map id="myMap"
    markers="{{markers}}"
-   style="width:100%;height:{{windowHeight}}px;"
+   style="width:100%;height:{{windowHeight-100+25}}px;"
    show-location
    longitude="{{startLng}}" 
    controls="{{controls}}" 
@@ -39,8 +39,14 @@ bindinput="getsuggest" value="{{backfill}}" bindblur="blur"></input>
  
     <cover-image hidden='{{!recording}}' src="../../img/other/stop.png" class="img-plus-style" bindtap="stoprecording"></cover-image>
 
-
 </map>
+
+<view>
+  <form bindsubmit='startDriving' report-submit="true">
+    <button hidden='{{setWarning}}' class="btn2" form-type='submit'>点击开启偏离路线警告</button>
+  </form>
+  <button hidden='{{!setWarning}}' class="btn1">偏离路线警告已开启</button>
+</view>
 
 <!-- <cover-view hidden='{{recording}}'>
     <cover-image src="../../img/other/record.png" class="img-plus-style" bindtap="recording"></cover-image>

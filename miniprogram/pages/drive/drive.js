@@ -8,7 +8,7 @@ var qqmapsdk
 const EARTH_RADIUS = 6378137.0;    //单位M
 const PI = Math.PI;
 const maxDeviationDistance = 200;
-
+const maxDestinationDistance = 100;
 Page({
   data: {
     Height: 0,
@@ -24,7 +24,9 @@ Page({
     suggestion: [],
     recording: false,
     locationTimer: {},
-    checkDeviationTimer: {}
+    checkDeviationTimer: {},
+    form_id: 0,
+    setWarning: false
 
     // controls: [{
     //   id: 1,
@@ -365,7 +367,7 @@ Page({
     return s;
   },
 
-  checkDeviation: function() {
+  checkDeviation: function () {
     var _this = this;
     if (_this.data.polyline.length > 0) {
       let flag = true;
@@ -381,16 +383,65 @@ Page({
       if (flag) {
         //路线偏离，显示警告
         console.log("WARNING!!!!!!!!!!")
+        if (_this.data.form_id != '') {
+          wx.cloud.callFunction({
+            // 云函数名称
+            name: 'getAccessToken',
+            // 传给云函数的参数
+            data: {
+            },
+          }).then(res => {
+            console.log(res)
+            app.globalData.access_token = JSON.parse(res.result).access_token;
+            console.log(app.globalData.access_token + typeof (app.globalData.access_token))
+            wx.cloud.callFunction({
+              name: 'sendTemplateMessage',
+              data: {
+                "token": app.globalData.access_token,
+                "openid": "ofYS94kia5Z-9yeK-8b05C0Q2LQI",
+                "formid": _this.data.form_id,
+                "page": "",
+                "data": {
+                  "keyword1": {
+                    "value": "危险"
+                  },
+                  "keyword2": {
+                    "value": util.formatTime(new Date())
+                  },
+                  "keyword3": {
+                    "value": "当前行车位置已偏离预计路线超过200米！"
+                  },
+                },
+                "emphasis_keyword": ""
+              }
+            }).then(res => {
+              console.log(res);
+              _this.setData({
+                form_id: '',
+                setWarning: false
+              })
+            }).catch(console.error)
+          }).catch(console.error) 
+        }
       }
       if (_this.getGreatCircleDistance(_this.data.startLat, _this.data.startLng,
         _this.data.polyline["0"].points[len - 1].latitude, _this.data.polyline["0"].points[len - 1].longitude)
-        < maxDeviationDistance) {
+        < maxDestinationDistance) {
+        console.log('clear interval!')
         clearInterval(_this.data.checkDeviationDtimer);
       }
     }
     else {
+      console.log('clear interval!')
       clearInterval(_this.data.checkDeviationDtimer);
     }
-  }
+  },
+
+  startDriving: function (e) {
+    this.setData({
+      form_id: e.detail.formId,
+      setWarning: true
+    })
+  },
 
 })

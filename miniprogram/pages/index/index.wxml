@@ -24,36 +24,21 @@
     </view>
 
     <view class="content">
-      <view class="content-item" wx:for="{{contentItems}}">
-        <image src='../../img/index/suggest1.jpg'>
+      <view class="content-item" wx:for="{{contentItems}}" >
+        <image src="{{item.image}}">
         </image>
 
         <view class='content-item-text'>
-          <text>这是一段新闻</text>
+          <text>{{item.text}}</text>
         </view>
 
       </view>
-
-      <!-- <view class="content-item">
-        <image src='../../img/index/suggest2.jpg'></image>
-      </view>
-
-
-      <view class="content-item">
-        <image src='../../img/index/suggest3.jpg'></image>
-      </view>
-
-
-      <view class="content-item">
-        <image src='../../img/index/suggest4.jpg'></image>
-      </view> -->
-
 
     </view>
   </view>
 
 
-  <view class="selection">
+  <scroll-view class="selection" scroll-y="true">
     <view class='header'>
       <text>热门事件 </text>
       <text class='text-all'>全部热门</text>
@@ -61,26 +46,20 @@
 
     <view class='list-item' wx:for="{{listItems}}">
       <view class='list-item-images'>
-        <image src='../../img/index/suggest4.jpg' class='list-item-iamges-img'></image>
-        <image src='../../img/index/suggest3.jpg' class='avatar'></image>
+        <image src="{{item.image1}}" class='list-item-iamges-img'></image>
+        <image src="{{item.image2}}" class='avatar'></image>
 
       </view>
 
       <view class='list-item-text'>
         <view class='list-item-text-title'>
-
-          <text>标题</text>
+          <text>{{item.head}}</text>
         </view>
         <view class='list-item-text-content'>
-
-          <text>这里是一段内容，你好。这里是一段内容，你好。这里是一段内容，你好。这里是一段内容，你好。</text>
+          <text>{{item.content}}</text>
         </view>
-
-
       </view>
-
-
     </view>
-  </view>
+  </scroll-view>
 
 </view>

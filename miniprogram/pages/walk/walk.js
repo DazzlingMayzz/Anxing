@@ -59,17 +59,19 @@ Page({
         })
       }
     })
-    wx.getLocation({
-      success(data) {
-        if (data) {
-          _this.setData({
-            startLat: data.latitude,
-            startLng: data.longitude,
-            location: data.latitude +','+data.longitude
-          });
+    setInterval(function() {
+      wx.getLocation({
+        success(data) {
+          if (data) {
+            _this.setData({
+              startLat: data.latitude,
+              startLng: data.longitude,
+              location: data.latitude + ',' + data.longitude
+            });
+          }
         }
-      }
-    })
+      })
+    }, 1000)
     wx.getSystemInfo({
       success: function (res) {
         _this.setData({
@@ -83,6 +85,7 @@ Page({
       }
     })
     // console.log(app.globalData.location.latitude)
+    
   },
 
   onReady: function(){

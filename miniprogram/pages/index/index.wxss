@@ -110,3 +110,8 @@
   color: #999;
   margin-top: 20rpx;
 }
+
+.plhStyle{
+  color:blue;
+  font-size: 16px;
+}

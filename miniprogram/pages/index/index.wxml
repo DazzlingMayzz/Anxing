@@ -3,7 +3,7 @@
   <view class='sesection'>
     <view class="cnaps  borderBottom">
       <!-- <text>所在城市</text> -->
-      <input class='m-bbt' placeholder-class='plhStyle' type='number' maxlength='50' placeholder='' bindinput="bindKeyInput" value='{{province}} {{city}} {{latitude}} {{longitude}}' disabled></input>
+      <input class='plhStyle' type='number' maxlength='50' placeholder='' bindinput="bindKeyInput" value='{{province}} {{city}} {{latitude}} {{longitude}}' disabled></input>
     </view>
   </view>
 
@@ -19,7 +19,7 @@
 
   <view class="selection">
     <view class='header'>
-      <text>精品推荐 </text>
+      <text style="font-size: 16px;">精品推荐 </text>
       <text class='text-all'>全部精品</text>
     </view>
 
@@ -40,7 +40,7 @@
 
   <scroll-view class="selection" scroll-y="true">
     <view class='header'>
-      <text>热门事件 </text>
+      <text style="font-size: 16px;">热门事件 </text>
       <text class='text-all'>全部热门</text>
     </view>
 

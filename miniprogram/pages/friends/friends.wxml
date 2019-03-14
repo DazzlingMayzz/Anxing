@@ -7,5 +7,22 @@
     </block>
   </view>
 </view>
-
-<view>联系人管理</view>
+<view class="info">
+  <view style="font-size:20px;">联系人管理</view>
+  <button class="btn1" bindtap='addContactPerson'>新建联系人</button>
+  <view style="margin-top:10px;">
+    <view style="display:flex; margin-left:5px; margin-right:5px; background-color:rgba(128, 128, 128, 0.25); border: 1px solid black; height:35px;">
+     <view style="width:35%; font-size:22px; line-height: 35px;">姓名</view>
+     <view style="width:65%; font-size:22px; line-height: 35px;">电话</view>
+    </view>
+    <view class="contactPersonInfo" wx:for="{{contactPersons}}" 
+        bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd"
+        bindtap='callContactPhoneNumber' bindlongtap='deleteContactPhoneNumber'
+        data-id="{{item._id}}" data-name="{{item.name}}" data-phoneNumber="{{item.phoneNumber}}">
+      <view style="display:flex;">
+        <view class="contactName">{{item.name}}</view>
+        <view class="contactPhoneNumber">{{item.phoneNumber}}</view>
+      </view>
+    </view>
+  </view>
+</view>

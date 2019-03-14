@@ -6,7 +6,8 @@
     "pages/mine/mine",
     "pages/logs/logs",
     "pages/records/records",
-    "pages/friends/friends"
+    "pages/friends/friends",
+    "pages/addContactPerson/addContactPerson"
   ],
   "permission": {
     "scope.userLocation": {

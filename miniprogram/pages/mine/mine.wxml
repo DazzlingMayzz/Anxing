@@ -19,8 +19,8 @@
     <view>紧急联系人</view>
  </button>
 
- <view>
+ <!-- <view>
     <form bindsubmit='submit' report-submit="true">
     <button class='btn' form-type='submit'>发送模板请求</button>
     </form>
- </view>
+ </view> -->

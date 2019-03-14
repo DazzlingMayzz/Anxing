@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -60,6 +60,17 @@
 					"pathName": "pages/drive/drive",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "index",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "friends",
+					"pathName": "pages/friends/friends"
 				}
 			]
 		}

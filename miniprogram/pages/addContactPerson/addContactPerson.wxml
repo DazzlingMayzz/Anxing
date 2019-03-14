@@ -1,0 +1,14 @@
+<view>
+  <form bindsubmit="formSubmit">
+    <view style="display:flex; font-size:18px;">
+      姓名：<input type="text" name="name" placeholder="请输入联系人姓名" />
+    </view>
+    <view style="display:flex; font-size:18px;">
+      联系方式：<input type="number" name="phoneNumber" placeholder="请输入联系方式" />
+    </view>
+    <view style="display:flex; font-size:20px;">
+      <button form-type="submit">Submit</button>
+      <button form-type="reset">Reset</button>
+    </view>
+  </form>
+</view>

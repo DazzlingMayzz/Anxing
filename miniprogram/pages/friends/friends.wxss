@@ -20,3 +20,43 @@
 .usermotto {
   margin-top: 200px;
 }
+
+.info {
+  position: relative;
+}
+
+.btn1 {
+  width:120px;
+  height:30px;
+  border-radius:98rpx;
+  position:absolute;
+  top:0px;
+  right:5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+  text-align: center;
+  color: white;
+  background-color: green;
+}
+
+.contactPersonInfo {
+  display: -webkit-flex;
+  flex-direction: column;
+  height: 35px;
+  margin: 2px 5px 2px;
+  background-color: rgba(128, 128, 128, 0.25);
+  font-size: 20px;
+  border: 1px solid black;
+}
+
+.contactName {
+  width: 35%;
+  line-height: 35px;
+}
+
+.contactPhoneNumber {
+  width: 65%;
+  line-height: 35px;
+}

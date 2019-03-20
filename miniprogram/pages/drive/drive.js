@@ -398,7 +398,7 @@ Page({
               name: 'sendTemplateMessage',
               data: {
                 "token": app.globalData.access_token,
-                "openid": "ofYS94kia5Z-9yeK-8b05C0Q2LQI",
+                "openid": app.globalData.openid,
                 "formid": _this.data.form_id,
                 "page": "",
                 "data": {

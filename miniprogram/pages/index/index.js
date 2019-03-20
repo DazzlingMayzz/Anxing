@@ -126,7 +126,7 @@ Page({
   getLocation: function() {
     let vm = this;
     wx.getLocation({
-      type: 'wgs84',
+      type: 'gcj02',
       success: function(res) {
         console.log(JSON.stringify(res))
         var latitude = res.latitude

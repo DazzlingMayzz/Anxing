@@ -394,6 +394,7 @@ Page({
             console.log(res)
             app.globalData.access_token = JSON.parse(res.result).access_token;
             console.log(app.globalData.access_token + typeof (app.globalData.access_token))
+            console.log(app.globalData.openid)
             wx.cloud.callFunction({
               name: 'sendTemplateMessage',
               data: {

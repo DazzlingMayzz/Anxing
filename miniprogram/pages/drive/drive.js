@@ -367,6 +367,7 @@ Page({
     return s;
   },
 
+  //偏离检测
   checkDeviation: function () {
     var _this = this;
     if (_this.data.polyline.length > 0) {

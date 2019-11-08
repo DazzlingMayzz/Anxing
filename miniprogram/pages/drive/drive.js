@@ -20,6 +20,7 @@ Page({
     markers: [],
     location: '',
     polyline: [],
+    lastPosInPolyline: -1,  //提高性能
     hiddenSuggest: false,
     suggestion: [],
     recording: false,
@@ -151,9 +152,11 @@ Page({
           width: 4
         }];
         _this.setData({
-          polyline: polyline
+          polyline: polyline,
+          lastPosInPolyline: 0
         })
-        // console.log(polyline)
+        console.log('polyline:')
+        console.log(polyline)
         _this.data.checkDeviationDtimer = setInterval(_this.checkDeviation, 5000)
       }
     };
@@ -367,16 +370,22 @@ Page({
     return s;
   },
 
-  //偏离检测
+  //路线偏离检测
   checkDeviation: function () {
     var _this = this;
     if (_this.data.polyline.length > 0) {
       let flag = true;
       let len = _this.data.polyline["0"].points.length;
+      console.log('lastPosInPolyline:')
+      console.log(this.data.lastPosInPolyline)
       for (let i = 0; i < len; i++) {
-        if (_this.getGreatCircleDistance(_this.data.startLat, _this.data.startLng,
-          _this.data.polyline["0"].points[i].latitude, _this.data.polyline["0"].points[i].longitude)
+        if (_this.getGreatCircleDistance(_this.data.startLat, _this.data.startLng, 
+          _this.data.polyline["0"].points[(this.data.lastPosInPolyline + i) % len].latitude, 
+          _this.data.polyline["0"].points[(this.data.lastPosInPolyline + i) % len].longitude)
           < maxDeviationDistance) {
+          this.setData({
+            lastPosInPolyline: (this.data.lastPosInPolyline + i) % len
+          })
           flag = false;
           break;
         }

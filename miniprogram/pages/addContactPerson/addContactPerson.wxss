@@ -1,0 +1,11 @@
+.btn {
+  width: 45%;
+  margin-top: 20rpx;
+  background-color: green;
+  color: white;
+  border-radius: 98rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

@@ -7,6 +7,7 @@
     </block>
   </view>
 </view>
+
 <view class="info">
   <view style="font-size:20px;">联系人管理</view>
   <button class="btn1" bindtap='addContactPerson'>新建联系人</button>
@@ -26,3 +27,4 @@
     </view>
   </view>
 </view>
+
